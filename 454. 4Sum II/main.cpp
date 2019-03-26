@@ -28,6 +28,6 @@ int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D)
 }
 
 int main() {
-	
+	printf("hello world"); 
 	return 0;
 }

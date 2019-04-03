@@ -9,7 +9,7 @@ public:
         time[key][timestamp] = value;
     }
     string get(string key, int timestamp) {
-        auto index = time[key].upper_bound(timestamp,greater<int>());
+        auto index = time[key].upper_bound(timestamp);
         return index == time[key].begin() ? "" : (--index)->second;
     }
 };

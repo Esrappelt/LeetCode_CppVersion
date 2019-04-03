@@ -32,4 +32,4 @@
 *.app
 
 #bat
-*.bat
+#*.bat

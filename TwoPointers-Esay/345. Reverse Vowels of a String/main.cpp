@@ -5,19 +5,16 @@ using namespace std;
 class Solution {
 public:
     string reverseVowels(string s) {
-		map<char,bool> isVowels;
-		isVowels['a'] = isVowels['e'] = isVowels['i'] = isVowels['o'] = isVowels['u'] = true;
-		isVowels['A'] = isVowels['E'] = isVowels['I'] = isVowels['O'] = isVowels['U'] = true;
-		int p = 0,q = s.size() - 1;
-		while(p < q) {
-			if(isVowels[p] && isVowels[q]) {
-				cout << s[p] << ',' << s[q] << endl;
-				swap(s[p++],s[q--]);
+			int isVowels[125] = {0};
+			isVowels['a'] = isVowels['e'] = isVowels['i'] = isVowels['o'] = isVowels['u'] = 1;
+			isVowels['A'] = isVowels['E'] = isVowels['I'] = isVowels['O'] = isVowels['U'] = 1;
+			int p = 0,q = s.size() - 1;
+			while(p < q) {
+				if(isVowels[s[p]] && isVowels[s[q]]) swap(s[p++],s[q--]);
+				if(!isVowels[s[p]]) p++;
+				if(!isVowels[s[q]]) q--;
 			}
-			if(!isVowels[p]) p++;
-			if(!isVowels[q]) q--;
-		}
-		return s;
+			return s;
     }
 };
 

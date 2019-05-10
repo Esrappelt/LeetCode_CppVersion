@@ -3,32 +3,30 @@ using namespace std;
 
 class Solution {
 public:
-	vector<string> ans;
-	string tmp;
-	vector<vector<string>> res;
+		vector<string> ans;
+		string tmp;
+		vector<vector<string>> res;
     vector<vector<string>> partition(string s) {
-		if(s.size() <= 1) return {{s}};		
-		dfs(0,s.size(),s);
-		return res;
+			if(s.size() <= 1) return {{s}};		
+			dfs(0,s);
+			return res;
     }
-	void dfs(int index,int target,string &s) {
-		if(target < 0) return;
-		if(target == 0) {
+	void dfs(int index,string &s) {
+		if(index == s.size()){
 			res.emplace_back(ans);
 			return;
 		}
-		for(int i = 1; i <= s.size(); i++) {
-			tmp = s.substr(index,i);
-			if(!ok(tmp)) continue;
-			ans.push_back(tmp);
-			dfs(index + i,target - i,s);
-			ans.pop_back();
+		for(int i = index; i < s.size(); i++) {
+			if(ok(s,index,i)) {
+				ans.emplace_back(s.substr(index,i-index+1));
+				dfs(i+1,s);
+				ans.pop_back();
+			}
 		}
+		
 	}
-	bool ok(string &s) {
-		for(int p = 0,q = s.size() - 1; p < q; p++,q--) {
-			if(s[p] != s[q]) return false;
-		}
+	bool ok(string &s,int l,int r) {
+		while(l < r) if(s[l++] != s[r--]) return false;
 		return true;
 	}
 };

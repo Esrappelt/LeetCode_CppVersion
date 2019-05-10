@@ -3,20 +3,20 @@ using namespace std;
 
 class Solution {
 public:
-	vector<int> tmp;
+		vector<int> tmp;
     vector<vector<int>> subsets(vector<int>& nums) {
-		vector<vector<int>> ans;
+				vector<vector<int>> ans;
         dfs(0,nums,ans);
-		return ans;
+				return ans;
     }
-	void dfs(int dep,vector<int>& nums,vector<vector<int>> &ans) {
-		ans.emplace_back(tmp);
-		for(int i = dep; i < nums.size(); i++) {
-			tmp.emplace_back(nums[i]);
-			dfs(i+1,nums,ans);
-			tmp.pop_back();
-		} 
-	}
+		void dfs(int dep,vector<int>& nums,vector<vector<int>> &ans) {
+			ans.emplace_back(tmp);
+			for(int i = dep; i < nums.size(); i++) {
+				tmp.emplace_back(nums[i]);
+				dfs(i+1,nums,ans);
+				tmp.pop_back();
+			} 
+		}
 };
 
 
